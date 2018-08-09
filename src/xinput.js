@@ -140,7 +140,7 @@ function disableOutput(callback) {
     if (process.env.VERBOSE) {
       console.info(chalk.gray(`Call "xinput float ${id}"`));
     }
-    exec(`xinput float ${id}`, (err) => {
+    exec(`xinput float ${id}`, (err, stdout) => {
       if (err) {
         /* logger here. */
         return callback(err);
@@ -195,7 +195,7 @@ function enableOutput(callback) {
       if (process.env.VERBOSE) {
         console.info(chalk.gray(`Call "xinput reattach ${scannerId} ${virtualCoreKeyboardId}"`));
       }
-      exec(`xinput reattach ${scannerId} ${virtualCoreKeyboardId}`, (err) => {
+      exec(`xinput reattach ${scannerId} ${virtualCoreKeyboardId}`, (err, stdout) => {
         if (err) {
           return callback(err);
         }
