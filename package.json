@@ -1,0 +1,24 @@
+{
+  "name": "es-barcodescanner",
+  "version": "1.0.0",
+  "description": "Easyscreen barcode scanner interface.",
+  "main": "index.js",
+  "scripts": {
+    "pretty": "npm run pretty-js && npm run pretty-json",
+    "pretty-js": "prettier --parser babylon --print-width 175 --write \"./**/*.js\"",
+    "pretty-json": "prettier --parser json --print-width 175 --write \"./**/*.json\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IliaDragan/es-barcodescanner.git"
+  },
+  "author": "inlead",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0"
+  },
+  "devDependencies": {
+    "prettier": "1.14.0"
+  }
+}
