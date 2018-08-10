@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 /* Include exec from child_process for run xinput utility. */
 const { exec } = require("child_process");
 /* Name of master output device. */
@@ -7,7 +8,6 @@ const scannerName = "USB HJ ScannerApp";
 
 /* Regex for match device id in line of xinput --list output. */
 const xinputIdRegex = /id=\d+/;
-const chalk = require("chalk");
 
 /*
  * Match and parse device id in raw xinput line.
@@ -56,10 +56,19 @@ function extractDeviceStatus(xinputLine) {
 }
 
 /*
+ * getXinputDeviceIdAndStatus callback function.
+ * @callback getXinputDeviceIdAndStatusCallback
+ *
+ * @param {object} err - Any error.
+ * @param {string} id - Device id.
+ * @param {string} status - Device status.
+ */
+
+/*
  * Get id and status of device by device name.
  *
  * @param {!string} deviceName - Name of device from xinput --list.
- * @param {!function} callback - Callback function with args: (err, id, status)
+ * @param {!getXinputDeviceIdAndStatusCallback} callback
  */
 function getXinputDeviceIdAndStatus(deviceName, callback) {
   if (process.env.VERBOSE) {
@@ -123,9 +132,16 @@ function getXinputDeviceIdAndStatus(deviceName, callback) {
 }
 
 /*
+ * disableOutput callback function.
+ * @callback disableOutputCallback
+ *
+ * @param {object} err - Any error.
+ */
+
+/*
  * Find scanner device and disable output into system.
  *
- * @param {!function} callback - Callback function with args: (err)
+ * @param {!disableOutputCallback} callback
  */
 function disableOutput(callback) {
   getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
@@ -173,9 +189,16 @@ function disableOutput(callback) {
 }
 
 /*
+ * enableOutput callback function.
+ * @callback enableOutputCallback
+ *
+ * @param {object} err - Any error.
+ */
+
+/*
  * Find scanner device and enable output into system.
  *
- * @param {!function} callback - Callback function with args: (err)
+ * @param {!enableOutputCallback} callback
  */
 function enableOutput(callback) {
   getXinputDeviceIdAndStatus(scannerName, (err, scannerId, status) => {

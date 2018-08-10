@@ -1,0 +1,908 @@
+[
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0019",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Sleep Button",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "PNP0C0E/button/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input0",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event0", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "3",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "4000 0 0",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0001",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0019",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Power Button",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "PNP0C0C/button/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input1",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event1", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "3",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "10000000000000 0",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0001",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0019",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Power Button",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "LNXPWRBN/button/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/LNXSYSTM:00/LNXPWRBN:00/input/input2",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event2", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "3",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "10000000000000 0",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0006",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0019",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Video Bus",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "LNXVIDEO/video/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input3",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event3", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "3",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "3e000b00000000 0 0 0",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0483",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "5741",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0110",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "USB HJ ScannerApp",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-3/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3:1.0/0003:0483:5741.0001/input/input4",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["sysrq", "kbd", "event4", "leds", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "120013",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "e080ffdf01cfffff fffffffffffffffe",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    },
+    "LED": {
+      "value": "1f",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "1c4f",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0002",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0110",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "SIGMACHIP USB Keyboard",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-4.1/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4.1/1-4.1:1.0/0003:1C4F:0002.0002/input/input5",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["sysrq", "kbd", "event5", "leds", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "120013",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "1000000000007 ff800000000007ff febeffdff3cfffff fffffffffffffffe",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    },
+    "LED": {
+      "value": "7",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "1c4f",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0002",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0110",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "SIGMACHIP USB Keyboard",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-4.1/input1",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4.1/1-4.1:1.1/0003:1C4F:0002.0003/input/input6",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event6", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "1f",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "3007f 0 0 483ffff17aff32d bf54444600000000 1 130c130b17c000 267bfad941dfed 9e168000004400 10000002",
+      "prefix": "B"
+    },
+    "REL": {
+      "value": "40",
+      "prefix": "B"
+    },
+    "ABS": {
+      "value": "100000000",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0458",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0189",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0101",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Genius Wireless Mouse",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-4.2/input0",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4.2/1-4.2:1.0/0003:0458:0189.0004/input/input7",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["mouse0", "event7", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "17",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "1f0000 0 0 0 0",
+      "prefix": "B"
+    },
+    "REL": {
+      "value": "143",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0458",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0189",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0101",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Genius Wireless Mouse",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-4.2/input1",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4.2/1-4.2:1.1/0003:0458:0189.0005/input/input8",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["kbd", "event8", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "1f",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "3f0003007f 0 0 483ffff17aff32d bf54444600000000 1 130f938b17c000 677bfad941dfed 9ed68000004400 10000002",
+      "prefix": "B"
+    },
+    "REL": {
+      "value": "40",
+      "prefix": "B"
+    },
+    "ABS": {
+      "value": "7fff0100000000",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0458",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0189",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0101",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0003",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "Genius Wireless Mouse",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "usb-0000:00:14.0-4.2/input2",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-4/1-4.2/1-4.2:1.2/0003:0458:0189.0006/input/input9",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["sysrq", "kbd", "event9", "leds", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "120013",
+      "prefix": "B"
+    },
+    "KEY": {
+      "value": "e080ffdf01cfffff fffffffffffffffe",
+      "prefix": "B"
+    },
+    "MSC": {
+      "value": "10",
+      "prefix": "B"
+    },
+    "LED": {
+      "value": "1f",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH Mic",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input10",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event10", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "10",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH Headphone",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input11",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event11", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "4",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH HDMI/DP,pcm=3",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input12",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event12", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "140",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH HDMI/DP,pcm=7",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input13",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event13", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "140",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH HDMI/DP,pcm=8",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input14",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event14", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "140",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH HDMI/DP,pcm=9",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input15",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event15", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "140",
+      "prefix": "B"
+    }
+  },
+  {
+    "Vendor": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Product": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Version": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Bus": {
+      "value": "0000",
+      "prefix": "I"
+    },
+    "Name": {
+      "value": "HDA Intel PCH HDMI/DP,pcm=10",
+      "prefix": "N"
+    },
+    "Phys": {
+      "value": "ALSA",
+      "prefix": "P"
+    },
+    "Sysfs": {
+      "value": "/devices/pci0000:00/0000:00:1f.3/sound/card0/input16",
+      "prefix": "S"
+    },
+    "Uniq": {
+      "value": "",
+      "prefix": "U"
+    },
+    "Handlers": {
+      "value": ["event16", ""],
+      "prefix": "H"
+    },
+    "PROP": {
+      "value": "0",
+      "prefix": "B"
+    },
+    "EV": {
+      "value": "21",
+      "prefix": "B"
+    },
+    "SW": {
+      "value": "140",
+      "prefix": "B"
+    }
+  }
+]

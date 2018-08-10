@@ -2,10 +2,12 @@ const program = require("commander");
 const chalk = require("chalk");
 
 const xinput = require("./src/xinput");
+const catDevices = require("./src/cat-device");
 
 program
-  .option("--disable-output", "Disable barcode scanner output into system.")
-  .option("--enable-output", "Disable barcode scanner output into system.")
+  .option("--disable-output", "Disable barcode scanner output into system (xinput).")
+  .option("--enable-output", "Disable barcode scanner output into system (xinput).")
+  .option("--get-handler-event", "Print handler event name of scanner (used for evtest).")
   .option("--silent", "No printing")
   .option("-v, --verbose", "Print additional info")
   .parse(process.argv);
@@ -39,5 +41,18 @@ if (program.enableOutput) {
     }
 
     console.log(chalk.green("Scanner output enabled"));
+  });
+}
+
+if (program.getHandlerEvent) {
+  catDevices.getScanner((err, scanner) => {
+    if (err) {
+      console.error(chalk.red(err.message));
+      process.exit(1);
+    }
+
+    var eventName = catDevices.getDeviceDevInputEvent(scanner);
+
+    console.log(chalk.green(`Scanner event handler name: "${eventName}"`));
   });
 }
