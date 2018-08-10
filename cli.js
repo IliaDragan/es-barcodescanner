@@ -2,7 +2,7 @@ const program = require("commander");
 const chalk = require("chalk");
 
 const xinput = require("./src/xinput");
-const catDevices = require("./src/cat-device");
+const catDevices = require("./src/cat-devices");
 
 program
   .option("--disable-output", "Disable barcode scanner output into system (xinput).")
