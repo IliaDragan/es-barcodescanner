@@ -253,6 +253,7 @@ function enableOutput(callback) {
 module.exports = {
   disableOutput,
   enableOutput,
+  getScannerIdAndStatus: getXinputDeviceIdAndStatus.bind(this, scannerName),
   /* Exports for tests, should not be used outside. */
   __extractDeviceId: extractDeviceId,
   __extractDeviceStatus: extractDeviceStatus
