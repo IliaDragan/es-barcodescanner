@@ -1,5 +1,6 @@
 const program = require("commander");
 const chalk = require("chalk");
+const { table } = require("table");
 
 const xinput = require("./src/xinput");
 const catDevices = require("./src/cat-devices");
@@ -37,7 +38,7 @@ if (program.scannerStatus) {
 
       var eventName = catDevices.getDeviceDevInputEvent(scanner);
 
-      console.log(chalk.green(`Scanner output status: "${status}". Id in xinput: "${id}". Scanner event handler name: "${eventName}"`));
+      console.log(table([["Id (xinput)", "Output (xinput)", "Input event (/proc/bus/input/devices)"], [id, status, eventName]]));
     });
   });
 }

@@ -20,7 +20,8 @@
   "license": "UNLICENSED",
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.16.0"
+    "commander": "^2.16.0",
+    "table": "^4.0.3"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
