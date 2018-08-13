@@ -26,4 +26,3 @@ describe("evtest", function() {
     assert.equal(actual, expectedStringifiedBuffer);
   });
 });
-
