@@ -69,23 +69,26 @@ function extractDeviceStatus(xinputLine) {
  *
  * @param {!string} deviceName - Name of device from xinput --list.
  * @param {!getXinputDeviceIdAndStatusCallback} callback
+ * @param {?function} logger - logger should be comparable with native console.
  */
-function getXinputDeviceIdAndStatus(deviceName, callback) {
-  if (process.env.VERBOSE) {
-    console.info(chalk.gray(`Call "xinput --list"`));
+function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
+  if (logger) {
+    logger.info(chalk.gray(`Call "xinput --list"`));
   }
   exec("xinput --list", (err, stdout, stderr) => {
     if (err) {
-      /* logger here. */
+      if (logger) {
+        logger.error(err);
+      }
       return callback(err);
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(stdout));
+    if (logger) {
+      logger.info(chalk.gray(stdout));
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray("Splitting stdout by line ending"));
+    if (logger) {
+      logger.info(chalk.gray("Splitting stdout by line ending"));
     }
     var scannerDevices = stdout.split("\n").filter((line) => {
       return line.indexOf(deviceName) !== -1;
@@ -98,24 +101,26 @@ function getXinputDeviceIdAndStatus(deviceName, callback) {
     }
 
     if (err) {
-      /* logger here. */
+      if (logger) {
+        logger.error(err);
+      }
       return callback(err);
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(`Id extracting for "${deviceName}"`));
+    if (logger) {
+      logger.info(chalk.gray(`Id extracting for "${deviceName}"`));
     }
     var id = extractDeviceId(scannerDevices[0]);
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(`Id is "${id}"`));
+    if (logger) {
+      logger.info(chalk.gray(`Id is "${id}"`));
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(`Status extracting for "${deviceName}"`));
+    if (logger) {
+      logger.info(chalk.gray(`Status extracting for "${deviceName}"`));
     }
     var status = extractDeviceStatus(scannerDevices[0]);
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(`Status is "${status}"`));
+    if (logger) {
+      logger.info(chalk.gray(`Status is "${status}"`));
     }
 
     if (!id || status.startsWith("unknown:")) {
@@ -123,7 +128,9 @@ function getXinputDeviceIdAndStatus(deviceName, callback) {
     }
 
     if (err) {
-      /* logger here. */
+      if (logger) {
+        logger.error(err);
+      }
       return callback(err);
     }
 
@@ -142,8 +149,9 @@ function getXinputDeviceIdAndStatus(deviceName, callback) {
  * Find scanner device and disable output into system.
  *
  * @param {!disableOutputCallback} callback
+ * @param {?function} logger - logger should be comparable with native console.
  */
-function disableOutput(callback) {
+function disableOutput(callback, logger) {
   getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
     if (err) {
       return callback(err);
@@ -153,18 +161,20 @@ function disableOutput(callback) {
       return callback();
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(`Call "xinput float ${id}"`));
+    if (logger) {
+      logger.info(chalk.gray(`Call "xinput float ${id}"`));
     }
     exec(`xinput float ${id}`, (err, stdout) => {
       if (err) {
-        /* logger here. */
+        if (logger) {
+          logger.error(err);
+        }
         return callback(err);
       }
 
-      if (process.env.VERBOSE) {
-        console.info(chalk.gray(stdout));
-        console.info(chalk.gray("Cheking result."));
+      if (logger) {
+        logger.info(chalk.gray(stdout));
+        logger.info(chalk.gray("Cheking result."));
       }
 
       getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
@@ -173,14 +183,16 @@ function disableOutput(callback) {
         }
 
         if (status === "output-disabled") {
-          if (process.env.VERBOSE) {
-            console.info(chalk.gray("Successful operation."));
+          if (logger) {
+            logger.info(chalk.gray("Successful operation."));
           }
 
           return callback();
         } else {
-          /* logger here. */
           err = new Error("Can't disable scanner output.");
+          if (logger) {
+            logger.error(err);
+          }
           return callback(err);
         }
       });
@@ -199,8 +211,9 @@ function disableOutput(callback) {
  * Find scanner device and enable output into system.
  *
  * @param {!enableOutputCallback} callback
+ * @param {?function} logger - logger should be comparable with native console.
  */
-function enableOutput(callback) {
+function enableOutput(callback, logger) {
   getXinputDeviceIdAndStatus(scannerName, (err, scannerId, status) => {
     if (err) {
       return callback(err);
@@ -215,17 +228,17 @@ function enableOutput(callback) {
         return callback(err);
       }
 
-      if (process.env.VERBOSE) {
-        console.info(chalk.gray(`Call "xinput reattach ${scannerId} ${virtualCoreKeyboardId}"`));
+      if (logger) {
+        logger.info(chalk.gray(`Call "xinput reattach ${scannerId} ${virtualCoreKeyboardId}"`));
       }
       exec(`xinput reattach ${scannerId} ${virtualCoreKeyboardId}`, (err, stdout) => {
         if (err) {
           return callback(err);
         }
 
-        if (process.env.VERBOSE) {
-          console.info(chalk.gray(stdout));
-          console.info(chalk.gray("Cheking result."));
+        if (logger) {
+          logger.info(chalk.gray(stdout));
+          logger.info(chalk.gray("Cheking result."));
         }
 
         getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
@@ -234,14 +247,16 @@ function enableOutput(callback) {
           }
 
           if (status === "output-enabled") {
-            if (process.env.VERBOSE) {
-              console.info(chalk.gray("Successful operation."));
+            if (logger) {
+              logger.info(chalk.gray("Successful operation."));
             }
 
             return callback();
           } else {
-            /* logger here. */
             err = new Error("Can't enable scanner output.");
+            if (logger) {
+              logger.error(err);
+            }
             return callback(err);
           }
         });

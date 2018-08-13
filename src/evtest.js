@@ -89,12 +89,13 @@ function evtestBufferToStirng(buffer) {
  * Spawn evtest process under sudo and listen scanner ("as keyboard") events.
  *
  * @param {!string} eventName - Event name from "/dev/input" wich scanner was handled in system.
+ * @param {?function} logger - logger should be comparable with native console.
  * @retrun {spawnObject}
  */
-function spawnEvtest(eventName, callback) {
+function spawnEvtest(eventName, logger) {
   var emitter = new EventEmitter();
-  if (process.env.VERBOSE) {
-    console.info(chalk.gray(`Spawn evtest --grab /dev/input/${eventName}`));
+  if (logger) {
+    logger.info(chalk.gray(`Spawn evtest --grab /dev/input/${eventName}`));
   }
   var evtest = suspawn("evtest", ["--grab", `/dev/input/${eventName}`]);
   /* readMode required for skip evtest initialization output. */
@@ -109,8 +110,8 @@ function spawnEvtest(eventName, callback) {
   evtest.stdout.on("data", (data) => {
     data = data.toString();
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(data));
+    if (logger) {
+      logger.info(chalk.gray(data));
     }
 
     /* Handle evtest initialization. */
@@ -118,11 +119,14 @@ function spawnEvtest(eventName, callback) {
       readMode = true;
       if (data.indexOf("This device is grabbed by another process.") !== -1) {
         var error = new Error(`Scanner is busy, close another read processes for "/dev/input/${eventName}" and try again.`);
-        /* logger here. */
+        if (logger) {
+          logger.error(error);
+        }
+
         throw error;
       } else {
-        if (process.env.VERBOSE) {
-          console.info(chalk.gray("Scanner is ready."));
+        if (logger) {
+          logger.info(chalk.gray("Scanner is ready."));
         }
 
         returns.isReady = true;
@@ -144,8 +148,8 @@ function spawnEvtest(eventName, callback) {
       if (event.type && event.type.value === "EV_KEY" && event.value && event.value.value === "0") {
         if (event.code.value === "KEY_ENTER") {
           var value = evtestBufferToStirng(buffer);
-          if (process.env.VERBOSE) {
-            console.info(chalk.gray(`Scanning finished. Value: ${value}`));
+          if (logger) {
+            logger.info(chalk.gray(`Scanning finished. Value: ${value}`));
           }
 
           emitter.emit("scan", value);
@@ -158,14 +162,16 @@ function spawnEvtest(eventName, callback) {
     });
   });
 
-  evtest.stderr.on("data", (data) => {
-    /* logger here. */
-  });
+  if (logger) {
+    evtest.stderr.on("data", (data) => {
+      logger.error(data);
+    });
+  }
 
   evtest.on("close", emitter.emit.bind(emitter, "close"));
 
-  if (process.env.VERBOSE) {
-    console.info(chalk.gray("Process spawned."));
+  if (logger) {
+    logger.info(chalk.gray("Process spawned."));
   }
 
   return returns;

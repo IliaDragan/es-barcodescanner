@@ -126,8 +126,9 @@ function parseDevice(deviceString) {
  *
  * @param {?string} filename - Path to the file with devices (by default: /proc/bus/input/devices)
  * @param {devicesListCallback} callback.
+ * @param {?function} logger - logger should be comparable with native console.
  */
-function devicesList(filename, callback) {
+function devicesList(filename, callback, logger) {
   if (filename instanceof Function && !callback) {
     callback = filename;
     filename = null;
@@ -137,21 +138,23 @@ function devicesList(filename, callback) {
     filename = devicesFile;
   }
 
-  if (process.env.VERBOSE) {
-    console.info(chalk.gray(`Call "cat ${filename}"`));
+  if (logger) {
+    logger.info(chalk.gray(`Call "cat ${filename}"`));
   }
   exec(`cat ${filename}`, (err, stdout) => {
     if (err) {
-      /* logger here. */
+      if (logger) {
+        logger.error(err);
+      }
       return callback(err);
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray(stdout));
+    if (logger) {
+      logger.info(chalk.gray(stdout));
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray("Devices parsing."));
+    if (logger) {
+      logger.info(chalk.gray("Devices parsing."));
     }
     callback(null, stdout.split("\n\n").map(parseDevice));
   });
@@ -170,8 +173,9 @@ function devicesList(filename, callback) {
  *
  * @param {?string} filename - Path to the file with devices (by default: used file from devicesList)
  * @param {getScannerCallback} callback.
+ * @param {?function} logger - logger should be comparable with native console.
  */
-function getScanner(filename, callback) {
+function getScanner(filename, callback, logger) {
   if (filename instanceof Function && !callback) {
     callback = filename;
     filename = null;
@@ -182,8 +186,8 @@ function getScanner(filename, callback) {
       return callback(err);
     }
 
-    if (process.env.VERBOSE) {
-      console.info(chalk.gray("Find scanner device."));
+    if (logger) {
+      logger.info(chalk.gray("Find scanner device."));
     }
 
     var device = devices.find((device) => {
@@ -203,11 +207,12 @@ const devInputEventRegex = /^event\d+$/;
  * Get event handler from device info.
  *
  * @param {DeviceObject} device - Device info.
+ * @param {?function} logger - logger should be comparable with native console.
  * @return {string} - Event name.
  */
-function getDeviceDevInputEvent(device) {
-  if (process.env.VERBOSE) {
-    console.info(chalk.gray("Find device event."));
+function getDeviceDevInputEvent(device, logger) {
+  if (logger) {
+    logger.info(chalk.gray("Find device event."));
   }
 
   return device.Handlers.value.find((v) => {

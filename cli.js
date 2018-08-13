@@ -20,9 +20,9 @@ if (program.silent) {
     console[logType] = () => {};
   });
 }
-
+var logger;
 if (program.verbose) {
-  process.env.VERBOSE = true;
+  logger = console;
 }
 
 var actions = {
@@ -39,12 +39,12 @@ var actions = {
           process.exit(1);
         }
 
-        var eventName = getDeviceDevInputEvent(scanner);
+        var eventName = getDeviceDevInputEvent(scanner, logger);
 
         console.log(table([["Id (xinput)", "Output (xinput)", "Input event (/proc/bus/input/devices)"], [id, status, eventName]]));
         callback && callback(id, status, eventName);
-      });
-    });
+      }, logger);
+    }, logger);
   },
   disableOutput: function(callback) {
     disableOutput((err) => {
@@ -55,7 +55,7 @@ var actions = {
 
       console.log(chalk.green("Scanner output disabled"));
       callback && callback();
-    });
+    }, logger);
   },
   enableOutput: function(callback) {
     enableOutput((err) => {
@@ -66,7 +66,7 @@ var actions = {
 
       console.log(chalk.green("Scanner output enabled"));
       callback && callback();
-    });
+    }, logger);
   }
 };
 if (program.scannerStatus) {
@@ -85,7 +85,7 @@ if (program.runTestScanner) {
   actions.disableOutput(() => {
     actions.scannerStatus((id, status, eventName) => {
       try {
-        var _process = spawnEvtest(eventName);
+        var _process = spawnEvtest(eventName, logger);
       } catch (err) {
         console.error(chalk.red(err.message));
         return process.exit(1);
