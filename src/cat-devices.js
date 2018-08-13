@@ -128,10 +128,21 @@ function parseDevice(deviceString) {
  * @param {devicesListCallback} callback.
  * @param {?function} logger - logger should be comparable with native console.
  */
-function devicesList(filename, callback, logger) {
-  if (filename instanceof Function && !callback) {
-    callback = filename;
+function devicesList() {
+  var filename, callback, logger;
+
+  if (arguments.length === 1) {
     filename = null;
+    callback = arguments[0];
+    logger = null;
+  } else if (arguments.length === 2 && typeof filename !== "string") {
+    filename = null;
+    callback = arguments[0];
+    logger = arguments[1];
+  } else if (arguments.length === 3) {
+    filename = arguments[0];
+    callback = arguments[1];
+    logger = arguments[2];
   }
 
   if (!filename) {
@@ -141,6 +152,7 @@ function devicesList(filename, callback, logger) {
   if (logger) {
     logger.info(chalk.gray(`Call "cat ${filename}"`));
   }
+
   exec(`cat ${filename}`, (err, stdout) => {
     if (err) {
       if (logger) {
@@ -175,27 +187,42 @@ function devicesList(filename, callback, logger) {
  * @param {getScannerCallback} callback.
  * @param {?function} logger - logger should be comparable with native console.
  */
-function getScanner(filename, callback, logger) {
-  if (filename instanceof Function && !callback) {
-    callback = filename;
+function getScanner() {
+  var filename, callback, logger;
+
+  if (arguments.length === 1) {
     filename = null;
+    callback = arguments[0];
+    logger = null;
+  } else if (arguments.length === 2 && typeof filename !== "string") {
+    filename = null;
+    callback = arguments[0];
+    logger = arguments[1];
+  } else if (arguments.length === 3) {
+    filename = arguments[0];
+    callback = arguments[1];
+    logger = arguments[2];
   }
 
-  devicesList(filename, (err, devices) => {
-    if (err) {
-      return callback(err);
-    }
+  devicesList(
+    filename,
+    (err, devices) => {
+      if (err) {
+        return callback(err);
+      }
 
-    if (logger) {
-      logger.info(chalk.gray("Find scanner device."));
-    }
+      if (logger) {
+        logger.info(chalk.gray("Find scanner device."));
+      }
 
-    var device = devices.find((device) => {
-      return device.Name.value === scannerName;
-    });
+      var device = devices.find((device) => {
+        return device.Name.value === scannerName;
+      });
 
-    callback(null, device);
-  });
+      callback(null, device);
+    },
+    logger
+  );
 }
 
 /*
