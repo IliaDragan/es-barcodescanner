@@ -135,11 +135,11 @@ function devicesList() {
     filename = null;
     callback = arguments[0];
     logger = null;
-  } else if (arguments.length === 2 && typeof filename !== "string") {
+  } else if (arguments.length === 2 && typeof arguments[0] !== "string") {
     filename = null;
     callback = arguments[0];
     logger = arguments[1];
-  } else if (arguments.length === 3) {
+  } else if (arguments.length === 3 || (arguments.length === 2 && typeof arguments[0] === "string")) {
     filename = arguments[0];
     callback = arguments[1];
     logger = arguments[2];
@@ -189,16 +189,15 @@ function devicesList() {
  */
 function getScanner() {
   var filename, callback, logger;
-
   if (arguments.length === 1) {
     filename = null;
     callback = arguments[0];
     logger = null;
-  } else if (arguments.length === 2 && typeof filename !== "string") {
+  } else if (arguments.length === 2 && typeof arguments[0] !== "string") {
     filename = null;
     callback = arguments[0];
     logger = arguments[1];
-  } else if (arguments.length === 3) {
+  } else if (arguments.length === 3 || (arguments.length === 2 && typeof arguments[0] === "string")) {
     filename = arguments[0];
     callback = arguments[1];
     logger = arguments[2];
