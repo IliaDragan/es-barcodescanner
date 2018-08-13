@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-/* Include exec from child_process for run xinput utility. */
+/* Include exec from child_process for run cat utility. */
 const { exec } = require("child_process");
 /* Name of scanner device.  */
 const scannerName = "USB HJ ScannerApp";
