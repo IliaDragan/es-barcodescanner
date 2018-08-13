@@ -71,7 +71,6 @@ function evtestBufferToStirng(buffer) {
     })
     .join("");
 }
-//console.log(JSON.stringify(parseLine(""), null, 2));
 
 /*
  * @typedef spawnObject
