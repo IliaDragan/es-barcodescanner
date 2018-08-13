@@ -2,10 +2,12 @@ const program = require("commander");
 const chalk = require("chalk");
 const { table } = require("table");
 
-const xinput = require("./src/xinput");
-const catDevices = require("./src/cat-devices");
+const { getScannerIdAndStatus, disableOutput, enableOutput } = require("./src/xinput");
+const { getScanner, getDeviceDevInputEvent } = require("./src/cat-devices");
+const { spawnEvtest } = require("./src/evtest");
 
 program
+  .option("--run-test-scanner", "Run scanner application wihtout socket server and disable output as keyboard.")
   .option("--scanner-status", 'Show barcode scanner output id and status from "xinput" and event handler name.')
   .option("--disable-output", "Disable barcode scanner output into system (xinput).")
   .option("--enable-output", "Disable barcode scanner output into system (xinput).")
@@ -14,7 +16,7 @@ program
   .parse(process.argv);
 
 if (program.silent) {
-  Object.keys(console).forEach(function(logType) {
+  Object.keys(console).forEach((logType) => {
     console[logType] = () => {};
   });
 }
@@ -23,44 +25,85 @@ if (program.verbose) {
   process.env.VERBOSE = true;
 }
 
-if (program.scannerStatus) {
-  xinput.getScannerIdAndStatus((err, id, status) => {
-    if (err) {
-      console.error(chalk.red(err.message));
-      process.exit(1);
-    }
-
-    catDevices.getScanner((err, scanner) => {
+var actions = {
+  scannerStatus: function(callback) {
+    getScannerIdAndStatus((err, id, status) => {
       if (err) {
         console.error(chalk.red(err.message));
         process.exit(1);
       }
 
-      var eventName = catDevices.getDeviceDevInputEvent(scanner);
+      getScanner((err, scanner) => {
+        if (err) {
+          console.error(chalk.red(err.message));
+          process.exit(1);
+        }
 
-      console.log(table([["Id (xinput)", "Output (xinput)", "Input event (/proc/bus/input/devices)"], [id, status, eventName]]));
+        var eventName = getDeviceDevInputEvent(scanner);
+
+        console.log(table([["Id (xinput)", "Output (xinput)", "Input event (/proc/bus/input/devices)"], [id, status, eventName]]));
+        callback && callback(id, status, eventName);
+      });
     });
-  });
+  },
+  disableOutput: function(callback) {
+    disableOutput((err) => {
+      if (err) {
+        console.error(chalk.red(err.message));
+        process.exit(1);
+      }
+
+      console.log(chalk.green("Scanner output disabled"));
+      callback && callback();
+    });
+  },
+  enableOutput: function(callback) {
+    enableOutput((err) => {
+      if (err) {
+        console.error(chalk.red(err.message));
+        process.exit(1);
+      }
+
+      console.log(chalk.green("Scanner output enabled"));
+      callback && callback();
+    });
+  }
+};
+if (program.scannerStatus) {
+  actions.scannerStatus();
 }
 
 if (program.disableOutput) {
-  xinput.disableOutput((err) => {
-    if (err) {
-      console.error(chalk.red(err.message));
-      process.exit(1);
-    }
-
-    console.log(chalk.green("Scanner output disabled"));
-  });
+  actions.disableOutput();
 }
 
 if (program.enableOutput) {
-  xinput.enableOutput((err) => {
-    if (err) {
-      console.error(chalk.red(err.message));
-      process.exit(1);
-    }
+  actions.enableOutput();
+}
 
-    console.log(chalk.green("Scanner output enabled"));
+if (program.runTestScanner) {
+  actions.disableOutput(() => {
+    actions.scannerStatus((id, status, eventName) => {
+      try {
+        var _process = spawnEvtest(eventName);
+      } catch (err) {
+        console.error(chalk.red(err.message));
+        return process.exit(1);
+      }
+
+      _process.emitter.on("scan", (scannedValue) => {
+        console.log("Barcode value:", chalk.green(scannedValue));
+      });
+
+      var ready = function() {
+        console.log(chalk.green("Scanner is ready."));
+      };
+
+      if (_process.isReady) {
+        ready();
+      } else {
+        _process.emitter.once("ready", ready);
+      }
+    });
   });
 }

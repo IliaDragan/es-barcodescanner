@@ -77,10 +77,12 @@ function evtestBufferToStirng(buffer) {
  * @typedef spawnObject
  * @type {object}
  * @property {object} evtest - Instance of spawned evtest process. (All props and use see in https://nodejs.org/api/child_process.html)
+ * @property {boolean} isReady - Spawned application ready status.
  * @property {object} emitter - Instance of nodejs event-emitter. 
- *   Has two events: 
+ *   Has next events: 
  *     "scan" - will emitted when scanning was finished; 
  *     "close" - will emited if process will closed.
+ *     "ready" - will emited once when scanner spawned will ready, 
  */
 
 /*
@@ -89,27 +91,44 @@ function evtestBufferToStirng(buffer) {
  * @param {!string} eventName - Event name from "/dev/input" wich scanner was handled in system.
  * @retrun {spawnObject}
  */
-function spawnEvtest(eventName) {
+function spawnEvtest(eventName, callback) {
   var emitter = new EventEmitter();
+  if (process.env.VERBOSE) {
+    console.info(chalk.gray(`Spawn evtest --grab /dev/input/${eventName}`));
+  }
   var evtest = suspawn("evtest", ["--grab", `/dev/input/${eventName}`]);
   /* readMode required for skip evtest initialization output. */
   var readMode = false;
   var buffer = [];
+  var returns = {
+    evtest: evtest,
+    emitter: emitter,
+    isReady: false
+  };
 
   evtest.stdout.on("data", (data) => {
     data = data.toString();
 
-    //VERBOSE here
-    //console.log(`stdout: ${data}`);
+    if (process.env.VERBOSE) {
+      console.info(chalk.gray(data));
+    }
+
     /* Handle evtest initialization. */
     if (data.indexOf("Testing ... (interrupt to exit)") !== -1) {
       readMode = true;
-      if (data.indexOf("This device is grabbed by another process.") === -1) {
-        console.info(chalk.green("Scanner ready."));
-      } else {
+      if (data.indexOf("This device is grabbed by another process.") !== -1) {
+        var error = new Error(`Scanner is busy, close another read processes for "/dev/input/${eventName}" and try again.`);
         /* logger here. */
-        throw new Error(`Scanner is busy, close another read processes for "/dev/input/${eventName}" and try again.`);
+        throw error;
+      } else {
+        if (process.env.VERBOSE) {
+          console.info(chalk.gray("Scanner is ready."));
+        }
+
+        returns.isReady = true;
+        emitter.emit("ready");
       }
+
       return;
     }
 
@@ -124,7 +143,12 @@ function spawnEvtest(eventName) {
       /* Handle only released keys. */
       if (event.type && event.type.value === "EV_KEY" && event.value && event.value.value === "0") {
         if (event.code.value === "KEY_ENTER") {
-          emitter.emit("scan", evtestBufferToStirng(buffer));
+          var value = evtestBufferToStirng(buffer);
+          if (process.env.VERBOSE) {
+            console.info(chalk.gray(`Scanning finished. Value: ${value}`));
+          }
+
+          emitter.emit("scan", value);
           buffer = [];
           return;
         }
@@ -140,10 +164,11 @@ function spawnEvtest(eventName) {
 
   evtest.on("close", emitter.emit.bind(emitter, "close"));
 
-  return {
-    evtest: evtest,
-    emitter: emitter
-  };
+  if (process.env.VERBOSE) {
+    console.info(chalk.gray("Process spawned."));
+  }
+
+  return returns;
 }
 
 module.exports = {
