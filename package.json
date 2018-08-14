@@ -10,7 +10,7 @@
     "pretty-json": "prettier --parser json --print-width 175 --write \"./**/*.json\""
   },
   "bin": {
-    "es-barcodescanner": "cli"
+    "es-barcodescanner": "./cli.js"
   },
   "repository": {
     "type": "git",
