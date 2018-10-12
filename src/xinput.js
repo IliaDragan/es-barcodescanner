@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const knownDevices = require('./known-devices');
 /* Include exec from child_process for run xinput utility. */
 const { exec } = require("child_process");
 /* Name of master output device. */
@@ -71,7 +72,18 @@ function extractDeviceStatus(xinputLine) {
  * @param {!getXinputDeviceIdAndStatusCallback} callback
  * @param {?function} logger - logger should be comparable with native console.
  */
-function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
+function getXinputDeviceIdAndStatus(deviceNameOrFind, callback, logger) {
+  var _deviceName, findByName;
+  if (typeof deviceNameOrFind === "string"){
+    _deviceName = deviceNameOrFind;
+    findByName = function(line){
+      return line.indexOf(_deviceName) !== -1;
+    };
+  } else {
+    _deviceName = "Barcode scanner by known names.";
+    findByName = deviceNameOrFind;
+  }
+
   if (logger) {
     logger.info(chalk.gray(`Call "xinput --list"`));
   }
@@ -91,7 +103,7 @@ function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
       logger.info(chalk.gray("Splitting stdout by line ending"));
     }
     var scannerDevices = stdout.split("\n").filter((line) => {
-      return line.indexOf(deviceName) !== -1;
+      return findByName(line);
     });
 
     if (scannerDevices.length === 0) {
@@ -108,7 +120,7 @@ function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
     }
 
     if (logger) {
-      logger.info(chalk.gray(`Id extracting for "${deviceName}"`));
+      logger.info(chalk.gray(`Id extracting for "${_deviceName}"`));
     }
     var id = extractDeviceId(scannerDevices[0]);
     if (logger) {
@@ -116,7 +128,7 @@ function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
     }
 
     if (logger) {
-      logger.info(chalk.gray(`Status extracting for "${deviceName}"`));
+      logger.info(chalk.gray(`Status extracting for "${_deviceName}"`));
     }
     var status = extractDeviceStatus(scannerDevices[0]);
     if (logger) {
@@ -152,7 +164,7 @@ function getXinputDeviceIdAndStatus(deviceName, callback, logger) {
  * @param {?function} logger - logger should be comparable with native console.
  */
 function disableOutput(callback, logger) {
-  getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
+  getXinputDeviceIdAndStatus(knownDevices.findByName, (err, id, status) => {
     if (err) {
       return callback(err);
     }
@@ -177,7 +189,7 @@ function disableOutput(callback, logger) {
         logger.info(chalk.gray("Cheking result."));
       }
 
-      getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
+      getXinputDeviceIdAndStatus(knownDevices.findByName, (err, id, status) => {
         if (err) {
           return callback(err);
         }
@@ -214,7 +226,7 @@ function disableOutput(callback, logger) {
  * @param {?function} logger - logger should be comparable with native console.
  */
 function enableOutput(callback, logger) {
-  getXinputDeviceIdAndStatus(scannerName, (err, scannerId, status) => {
+  getXinputDeviceIdAndStatus(knownDevices.findByName, (err, scannerId, status) => {
     if (err) {
       return callback(err);
     }
@@ -241,7 +253,7 @@ function enableOutput(callback, logger) {
           logger.info(chalk.gray("Cheking result."));
         }
 
-        getXinputDeviceIdAndStatus(scannerName, (err, id, status) => {
+        getXinputDeviceIdAndStatus(knownDevices.findByName, (err, id, status) => {
           if (err) {
             return callback(err);
           }
@@ -268,7 +280,7 @@ function enableOutput(callback, logger) {
 module.exports = {
   disableOutput,
   enableOutput,
-  getScannerIdAndStatus: getXinputDeviceIdAndStatus.bind(this, scannerName),
+  getScannerIdAndStatus: getXinputDeviceIdAndStatus.bind(this, knownDevices.findByName),
   /* Exports for tests, should not be used outside. */
   __extractDeviceId: extractDeviceId,
   __extractDeviceStatus: extractDeviceStatus

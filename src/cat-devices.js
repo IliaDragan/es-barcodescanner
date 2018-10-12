@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const knownDevices = require('./known-devices');
 /* Include exec from child_process for run cat utility. */
 const { exec } = require("child_process");
 /* Name of scanner device.  */
@@ -215,7 +216,7 @@ function getScanner() {
       }
 
       var device = devices.find((device) => {
-        return device.Name.value === scannerName;
+        return knownDevices.checkByName(device.Name.value);
       });
 
       callback(null, device);
