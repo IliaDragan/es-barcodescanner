@@ -1,3 +1,4 @@
+/* List of known devices for detecting app from cat-devices and xinput. */
 var knownDevices = [{
   name: "USB HJ ScannerApp",
   vendor: "0483",
@@ -9,16 +10,19 @@ var knownDevices = [{
 }];
 
 module.exports = {
+  /* Direct comparison. Used in cat-devices. */
   checkByName: function(name) {
     return knownDevices.some(function(knownDevice) {
       return knownDevice.name === name;
     });
   },
-  findByName: function(data){
+  /* Match in string. Used in xinput. */
+  findByName: function(data) {
     return knownDevices.some(function(knownDevice) {
       return data.indexOf(knownDevice.name) !== -1;
     });
   },
+  /* Compare by vendonId and productId. Not used but provided. */
   checkByVendorProduct: function(vendor, product) {
     return knownDevices.some(function(knownDevice) {
       return knownDevice.vendor === vendor && knownDevice.product === product;
