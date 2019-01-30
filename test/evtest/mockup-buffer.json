@@ -1,0 +1,434 @@
+[
+  {
+    "time": {
+      "value": "1534151305.149664",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "6",
+      "value": "KEY_5"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.153475",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "6",
+      "value": "KEY_5"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.153475",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "8",
+      "value": "KEY_7"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.157457",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "8",
+      "value": "KEY_7"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.157457",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.161523",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.161523",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "7",
+      "value": "KEY_6"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.165530",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "7",
+      "value": "KEY_6"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.165530",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "8",
+      "value": "KEY_7"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.169471",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "8",
+      "value": "KEY_7"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.169471",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "2",
+      "value": "KEY_1"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.173468",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "2",
+      "value": "KEY_1"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.173468",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.177476",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.181470",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.185522",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.189472",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.193500",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "11",
+      "value": "KEY_0"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.197487",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "7",
+      "value": "KEY_6"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.201519",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "7",
+      "value": "KEY_6"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.201519",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "2",
+      "value": "KEY_1"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.205479",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "2",
+      "value": "KEY_1"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.205479",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "6",
+      "value": "KEY_5"
+    },
+    "value": {
+      "value": "1",
+      "code": null
+    }
+  },
+  {
+    "time": {
+      "value": "1534151305.209461",
+      "code": null
+    },
+    "type": {
+      "code": "1",
+      "value": "EV_KEY"
+    },
+    "code": {
+      "code": "6",
+      "value": "KEY_5"
+    },
+    "value": {
+      "value": "0",
+      "code": null
+    }
+  }
+]

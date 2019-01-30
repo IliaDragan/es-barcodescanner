@@ -1,0 +1,18 @@
+{
+  "time": {
+    "value": "1534146610.830295",
+    "code": null
+  },
+  "type": {
+    "value": "EV_KEY",
+    "code": "1"
+  },
+  "code": {
+    "value": "KEY_6",
+    "code": "7"
+  },
+  "value": {
+    "value": "0",
+    "code": null
+  }
+}
