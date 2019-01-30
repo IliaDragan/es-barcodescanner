@@ -1,0 +1,1 @@
+Event: time 1534146610.830295, type 1 (EV_KEY), code 7 (KEY_6), value 0

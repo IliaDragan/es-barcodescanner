@@ -4,9 +4,13 @@
   "description": "Easyscreen barcode scanner interface.",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --file ./test/index.js",
     "pretty": "npm run pretty-js && npm run pretty-json",
     "pretty-js": "prettier --parser babylon --print-width 175 --write \"./**/*.js\"",
     "pretty-json": "prettier --parser json --print-width 175 --write \"./**/*.json\""
+  },
+  "bin": {
+    "es-barcodescanner": "./cli.js"
   },
   "repository": {
     "type": "git",
@@ -16,9 +20,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.16.0"
+    "commander": "^2.16.0",
+    "suspawn": "^0.2.2",
+    "table": "^4.0.3"
   },
   "devDependencies": {
-    "prettier": "1.14.0"
+    "mocha": "^5.2.0",
+    "prettier": "1.14.0",
+    "deep-object-diff": "^1.1.0"
   }
 }

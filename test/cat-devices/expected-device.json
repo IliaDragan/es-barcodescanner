@@ -1,0 +1,58 @@
+{
+  "Vendor": {
+    "value": "0483",
+    "prefix": "I"
+  },
+  "Product": {
+    "value": "5741",
+    "prefix": "I"
+  },
+  "Version": {
+    "value": "0110",
+    "prefix": "I"
+  },
+  "Bus": {
+    "value": "0003",
+    "prefix": "I"
+  },
+  "Name": {
+    "value": "USB HJ ScannerApp",
+    "prefix": "N"
+  },
+  "Phys": {
+    "value": "usb-0000:00:14.0-3/input0",
+    "prefix": "P"
+  },
+  "Sysfs": {
+    "value": "/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3:1.0/0003:0483:5741.0001/input/input4",
+    "prefix": "S"
+  },
+  "Uniq": {
+    "value": "",
+    "prefix": "U"
+  },
+  "Handlers": {
+    "value": ["sysrq", "kbd", "event4", "leds", ""],
+    "prefix": "H"
+  },
+  "PROP": {
+    "value": "0",
+    "prefix": "B"
+  },
+  "EV": {
+    "value": "120013",
+    "prefix": "B"
+  },
+  "KEY": {
+    "value": "e080ffdf01cfffff fffffffffffffffe",
+    "prefix": "B"
+  },
+  "MSC": {
+    "value": "10",
+    "prefix": "B"
+  },
+  "LED": {
+    "value": "1f",
+    "prefix": "B"
+  }
+}
