@@ -106,8 +106,9 @@ function spawnEvtest(eventName, logger) {
     isReady: false
   };
 
+  var previousLastLine = "";
   evtest.stdout.on("data", (data) => {
-    data = data.toString();
+    data = previousLastLine + data.toString();
 
     if (logger) {
       logger.info(chalk.gray(data));
@@ -140,8 +141,10 @@ function spawnEvtest(eventName, logger) {
       return;
     }
 
+    data = data.split("\n");
+    previousLastLine = data.pop();
     /* Split required since data can has several events at one time. */
-    data.split("\n").forEach((rawLine) => {
+    data.forEach((rawLine) => {
       var event = parseEvtestLine(rawLine);
       /* Handle only released keys. */
       if (event.type && event.type.value === "EV_KEY" && event.value && event.value.value === "0") {
