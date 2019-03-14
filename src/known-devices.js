@@ -1,13 +1,16 @@
 /* List of known devices for detecting app from cat-devices and xinput. */
-var knownDevices = [{
-  name: "USB HJ ScannerApp",
-  vendor: "0483",
-  product: "5741"
-}, {
-  name: "Future             USB Virtual PS2 Port    ",
-  vendor: "04b4",
-  product: "0100"
-}];
+var knownDevices = [
+  {
+    name: "USB HJ ScannerApp",
+    vendor: "0483",
+    product: "5741"
+  },
+  {
+    name: "Future             USB Virtual PS2 Port    ",
+    vendor: "04b4",
+    product: "0100"
+  }
+];
 
 module.exports = {
   /* Direct comparison. Used in cat-devices. */
@@ -28,4 +31,4 @@ module.exports = {
       return knownDevice.vendor === vendor && knownDevice.product === product;
     });
   }
-}
+};
