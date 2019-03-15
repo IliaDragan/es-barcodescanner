@@ -89,14 +89,20 @@ function evtestBufferToStirng(buffer) {
  *
  * @param {!string} eventName - Event name from "/dev/input" wich scanner was handled in system.
  * @param {?function} logger - logger should be comparable with native console.
+ * @param {?funciton} _spawn - stub for test recognizing flow.
  * @retrun {spawnObject}
  */
-function spawnEvtest(eventName, logger) {
+function spawnEvtest(eventName, logger, _spawn) {
   var emitter = new EventEmitter();
   if (logger) {
     logger.info(chalk.gray(`Spawn evtest --grab /dev/input/${eventName}`));
   }
-  var evtest = suspawn("evtest", ["--grab", `/dev/input/${eventName}`]);
+  var evtest;
+  if (_spawn && _spawn instanceof Function) {
+    evtest = _spawn();
+  } else {
+    evtest = suspawn("evtest", ["--grab", `/dev/input/${eventName}`]);
+  }
   /* readMode required for skip evtest initialization output. */
   var readMode = false;
   var buffer = [];
@@ -109,7 +115,6 @@ function spawnEvtest(eventName, logger) {
   var previousLastLine = "";
   evtest.stdout.on("data", (data) => {
     data = previousLastLine + data.toString();
-
     if (logger) {
       logger.info(chalk.gray(data));
     }
@@ -148,6 +153,8 @@ function spawnEvtest(eventName, logger) {
       var event = parseEvtestLine(rawLine);
       /* Handle only released keys. */
       if (event.type && event.type.value === "EV_KEY" && event.value && event.value.value === "0") {
+        event.specialKey = event.code.value.split("_")[1].length > 1;
+
         if (event.code.value === "KEY_ENTER") {
           var value = evtestBufferToStirng(buffer);
           if (logger) {
@@ -159,7 +166,9 @@ function spawnEvtest(eventName, logger) {
           return;
         }
 
-        buffer.push(event);
+        if (!event.specialKey) {
+          buffer.push(event);
+        }
       }
     });
   });

@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const knownDevices = require('./known-devices');
+const knownDevices = require("./known-devices");
 /* Include exec from child_process for run xinput utility. */
 const { exec } = require("child_process");
 /* Name of master output device. */
@@ -74,9 +74,9 @@ function extractDeviceStatus(xinputLine) {
  */
 function getXinputDeviceIdAndStatus(deviceNameOrFind, callback, logger) {
   var _deviceName, findByName;
-  if (typeof deviceNameOrFind === "string"){
+  if (typeof deviceNameOrFind === "string") {
     _deviceName = deviceNameOrFind;
-    findByName = function(line){
+    findByName = function(line) {
       return line.indexOf(_deviceName) !== -1;
     };
   } else {
