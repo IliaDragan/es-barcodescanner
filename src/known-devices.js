@@ -9,6 +9,11 @@ var knownDevices = [
     name: "Future             USB Virtual PS2 Port    ",
     vendor: "04b4",
     product: "0100"
+  },
+  {
+    name: "Newland Auto-ID FM100 HID KBW",
+    vendor: "1eab",
+    product: "1603"
   }
 ];
 
