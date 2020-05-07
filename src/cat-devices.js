@@ -216,7 +216,7 @@ function getScanner() {
       }
 
       var device = devices.find((device) => {
-        return knownDevices.checkByName(device.Name.value);
+        return knownDevices.checkByName(device.Name && device.Name.value);
       });
 
       callback(null, device);
