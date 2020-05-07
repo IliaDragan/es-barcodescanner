@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inleadmedia/es-barcodescanner.git"
+    "url": "git@github.com:inleadmedia/es-barcodescanner.git"
   },
   "author": "inlead",
   "license": "UNLICENSED",
