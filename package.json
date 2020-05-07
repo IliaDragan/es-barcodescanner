@@ -1,6 +1,6 @@
 {
   "name": "es-barcodescanner",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "easyScreen barcode scanner interface.",
   "main": "index.js",
   "scripts": {
