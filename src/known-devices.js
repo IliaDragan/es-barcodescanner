@@ -29,6 +29,11 @@ var knownDevices = [{
   name: "Newland Auto-ID NLS-FM430-RC USB HID Keyboard",
   vendor: "1eab",
   product: "1d03"
+},
+{
+  name: "Newland Auto-ID FM430",
+  vendor: "1eab",
+  product: "1d22"
 }];
 
 
