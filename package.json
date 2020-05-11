@@ -1,7 +1,7 @@
 {
   "name": "es-barcodescanner",
-  "version": "1.2.0",
-  "description": "easyScreen barcode scanner interface.",
+  "version": "1.3.0",
+  "description": "Easyscreen barcode scanner interface.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --file ./test/index.js",
