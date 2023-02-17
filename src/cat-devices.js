@@ -2,8 +2,6 @@ const chalk = require("chalk");
 const knownDevices = require("./known-devices");
 /* Include exec from child_process for run cat utility. */
 const { exec } = require("child_process");
-/* Name of scanner device.  */
-const scannerName = "USB HJ ScannerApp";
 /* File with list of devices.  */
 const devicesFile = "/proc/bus/input/devices";
 
@@ -151,10 +149,10 @@ function devicesList() {
   }
 
   if (logger) {
-    logger.info(chalk.gray(`Call "cat ${filename}"`));
+    logger.info(chalk.gray(`Call "cat ${ filename }"`));
   }
 
-  exec(`cat ${filename}`, (err, stdout) => {
+  exec(`cat ${ filename }`, (err, stdout) => {
     if (err) {
       if (logger) {
         logger.error(err);

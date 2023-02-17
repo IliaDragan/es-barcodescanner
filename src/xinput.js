@@ -4,8 +4,6 @@ const knownDevices = require("./known-devices");
 const { exec } = require("child_process");
 /* Name of master output device. */
 const virtualCoreKeyboardName = "Virtual core keyboard";
-/* Name of scanner device.  */
-const scannerName = "USB HJ ScannerApp";
 
 /* Regex for match device id in line of xinput --list output. */
 const xinputIdRegex = /id=\d+/;
@@ -42,7 +40,7 @@ function extractDeviceStatus(xinputLine) {
   var xinputStatus = xinputStatusRegex.exec(xinputLine);
 
   if (xinputStatus === null || xinputStatus[1] === undefined) {
-    return `unknown: ${xinputLine}`;
+    return `unknown: ${ xinputLine }`;
   } else {
     xinputStatus = xinputStatus[1];
   }
@@ -52,7 +50,7 @@ function extractDeviceStatus(xinputLine) {
   } else if (xinputStatusEnabledRegex.test(xinputStatus)) {
     return "output-enabled";
   } else {
-    return `unknown: ${xinputLine}`;
+    return `unknown: ${ xinputLine }`;
   }
 }
 
@@ -85,9 +83,9 @@ function getXinputDeviceIdAndStatus(deviceNameOrFind, callback, logger) {
   }
 
   if (logger) {
-    logger.info(chalk.gray(`Call "xinput --list"`));
+    logger.info(chalk.gray("Call \"xinput --list\""));
   }
-  exec("xinput --list", (err, stdout, stderr) => {
+  exec("xinput --list", (err, stdout) => {
     if (err) {
       if (logger) {
         logger.error(err);
@@ -120,23 +118,23 @@ function getXinputDeviceIdAndStatus(deviceNameOrFind, callback, logger) {
     }
 
     if (logger) {
-      logger.info(chalk.gray(`Id extracting for "${_deviceName}"`));
+      logger.info(chalk.gray(`Id extracting for "${ _deviceName }"`));
     }
     var id = extractDeviceId(scannerDevices[0]);
     if (logger) {
-      logger.info(chalk.gray(`Id is "${id}"`));
+      logger.info(chalk.gray(`Id is "${ id }"`));
     }
 
     if (logger) {
-      logger.info(chalk.gray(`Status extracting for "${_deviceName}"`));
+      logger.info(chalk.gray(`Status extracting for "${ _deviceName }"`));
     }
     var status = extractDeviceStatus(scannerDevices[0]);
     if (logger) {
-      logger.info(chalk.gray(`Status is "${status}"`));
+      logger.info(chalk.gray(`Status is "${ status }"`));
     }
 
     if (!id || status.startsWith("unknown:")) {
-      err = new Error(`Wrong scanner device id or status. id:"${id}", status: "${status}"`);
+      err = new Error(`Wrong scanner device id or status. id:"${ id }", status: "${ status }"`);
     }
 
     if (err) {
@@ -174,9 +172,9 @@ function disableOutput(callback, logger) {
     }
 
     if (logger) {
-      logger.info(chalk.gray(`Call "xinput float ${id}"`));
+      logger.info(chalk.gray(`Call "xinput float ${ id }"`));
     }
-    exec(`xinput float ${id}`, (err, stdout) => {
+    exec(`xinput float ${ id }`, (err, stdout) => {
       if (err) {
         if (logger) {
           logger.error(err);
@@ -241,9 +239,9 @@ function enableOutput(callback, logger) {
       }
 
       if (logger) {
-        logger.info(chalk.gray(`Call "xinput reattach ${scannerId} ${virtualCoreKeyboardId}"`));
+        logger.info(chalk.gray(`Call "xinput reattach ${ scannerId } ${ virtualCoreKeyboardId }"`));
       }
-      exec(`xinput reattach ${scannerId} ${virtualCoreKeyboardId}`, (err, stdout) => {
+      exec(`xinput reattach ${ scannerId } ${ virtualCoreKeyboardId }`, (err, stdout) => {
         if (err) {
           return callback(err);
         }
