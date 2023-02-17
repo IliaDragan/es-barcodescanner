@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --file ./test/index.js",
-    "pretty": "npm run pretty-js && npm run pretty-json",
-    "pretty-js": "prettier --parser babylon --print-width 175 --write \"./**/*.js\"",
-    "pretty-json": "prettier --parser json --print-width 175 --write \"./**/*.json\""
+    "lint": "eslint ./src ./test ./cli.js ./index.js ./.eslintrc.js",
+    "lint-and-fix": "eslint --fix ./src ./test ./cli.js ./index.js ./.eslintrc.js"
+  },
+  "gitHooks": {
+    "pre-commit": "npm run lint"
   },
   "bin": {
     "es-barcodescanner": "./cli.js"
@@ -25,8 +27,10 @@
     "table": "^4.0.3"
   },
   "devDependencies": {
+    "deep-object-diff": "^1.1.0",
+    "eslint": "^8.34.0",
     "mocha": "^5.2.0",
     "prettier": "1.14.0",
-    "deep-object-diff": "^1.1.0"
+    "yorkie": "^2.0.0"
   }
 }
