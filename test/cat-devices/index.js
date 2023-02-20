@@ -10,7 +10,7 @@ var catDevices = require("../../src/cat-devices");
 var mockupDevice = fs.readFileSync(path.join(__dirname, "./mockup-device.txt"), "utf-8");
 var expectedDevice = JSON.parse(fs.readFileSync(path.join(__dirname, "./expected-device.json"), "utf-8"));
 
-var mockupDevices = fs.readFileSync(path.join(__dirname, "./mockup-devices.txt"), "utf-8");
+//var mockupDevices = fs.readFileSync(path.join(__dirname, "./mockup-devices.txt"), "utf-8");
 var expectedDevices = JSON.parse(fs.readFileSync(path.join(__dirname, "./expected-devices.json"), "utf-8"));
 
 describe("cat devices", function() {

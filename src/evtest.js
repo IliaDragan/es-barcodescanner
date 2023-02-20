@@ -95,13 +95,13 @@ function evtestBufferToStirng(buffer) {
 function spawnEvtest(eventName, logger, _spawn) {
   var emitter = new EventEmitter();
   if (logger) {
-    logger.info(chalk.gray(`Spawn evtest --grab /dev/input/${eventName}`));
+    logger.info(chalk.gray(`Spawn evtest --grab /dev/input/${ eventName }`));
   }
   var evtest;
   if (_spawn && _spawn instanceof Function) {
     evtest = _spawn();
   } else {
-    evtest = suspawn("evtest", ["--grab", `/dev/input/${eventName}`]);
+    evtest = suspawn("evtest", ["--grab", `/dev/input/${ eventName }`]);
   }
   /* readMode required for skip evtest initialization output. */
   var readMode = false;
@@ -123,7 +123,7 @@ function spawnEvtest(eventName, logger, _spawn) {
     if (data.indexOf("Testing ... (interrupt to exit)") !== -1) {
       readMode = true;
       if (data.indexOf("This device is grabbed by another process.") !== -1) {
-        var error = new Error(`Scanner is busy, close another read processes for "/dev/input/${eventName}" and try again.`);
+        var error = new Error(`Scanner is busy, close another read processes for "/dev/input/${ eventName }" and try again.`);
         if (logger) {
           logger.error(error);
         }
@@ -158,7 +158,7 @@ function spawnEvtest(eventName, logger, _spawn) {
         if (event.code.value === "KEY_ENTER") {
           var value = evtestBufferToStirng(buffer);
           if (logger) {
-            logger.info(chalk.gray(`Scanning finished. Value: ${value}`));
+            logger.info(chalk.gray(`Scanning finished. Value: ${ value }`));
           }
 
           emitter.emit("scan", value);

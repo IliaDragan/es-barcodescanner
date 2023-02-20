@@ -9,9 +9,9 @@ const mockupDataEnabled = fs.readFileSync(path.join(__dirname, "mockup-data-enab
 const mockupDataDisabled = fs.readFileSync(path.join(__dirname, "mockup-data-disabled.txt"), "utf-8").split("\n");
 
 /* Name of master output device. */
-const virtualCoreKeyboardName = "Virtual core keyboard";
+//const virtualCoreKeyboardName = "Virtual core keyboard";
 /* Name of scanner device.  */
-const scannerName = "USB HJ ScannerApp";
+//const scannerName = "USB HJ ScannerApp";
 
 /* Line numbers from mockup data with testable devices. */
 const lineNumberWithScannerDevice = 15;
